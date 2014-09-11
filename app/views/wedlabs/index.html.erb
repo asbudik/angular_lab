@@ -1,0 +1,45 @@
+
+
+  <div ng-controller = "IndexCtrl">
+    <div class="restrict" ng-style="{backgroundColor: data}">
+
+    <h2>BG change</h2>
+      
+    <input class="form-control" type="text" ng-model="data">
+
+      <h2>I have {{favoriteMovies.length}} <ng-pluralize count = "favoriteMovies.length" when="{'1' : 'favorite', 'other' : 'favorites'}"></ng-pluralize></h2>
+
+
+      <input class="form-control" type="text" ng-model="search" placeholder="Search a movie" id="search">
+
+      <input type="checkbox" ng-model="checked" id="check">
+      <div class="magic" ng-show="checked">
+        <ul ng-repeat="movie in favoriteMovies | filter:search | orderBy: 'title' | limitTo: 3">
+          <li><span><strong>{{movie.title | reverse}}</strong> {{movie.release}}</span><button class="btn btn-danger delete" ng-click = "removeMovie(movie)">Remove</button></li>
+          
+        </ul>
+      </div>
+
+      <h2>Secret</h2>
+      <h3>{{count}}</h3>
+
+      <div class="magic">
+      <h3>{{typing}}</h3>
+      <h3>{{notice}}</h3>
+      </div>
+      <input class="form-control" type="text" ng-model="typing" placeholder="Guess secret, 20 chars" ng-keypress="count = count + 1" ng-init="count=0">
+
+
+      <h2> Hide on submit</h2>
+      <div>
+        <form ng-hide="sub">
+          <div class="form-group">
+          <input type="text" class="form-control">
+          </div>
+          <button ng-click="sub=true" class="form-control btn btn-success">Submit</button>
+        </form>
+    </div>
+  </div>
+
+  </div>
+</div>
